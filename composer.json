@@ -1,7 +1,7 @@
 {
-  "name":"dkullmann/cakephp-elastic-search-datasource",
+  "name":"slamkajs/cakephp-elastic-search-datasource",
   "version": "0.9",
-  "description":"CakePHP Datasource and Utilities for connecting models to Elastic Search types",
+  "description":"CakePHP Datasource and Utilities for connecting models to Elastic Search types, Modified from the DKullman plugin",
   "type":"cakephp-plugin",
   "keywords":[
     "cakephp",

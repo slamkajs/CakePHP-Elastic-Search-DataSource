@@ -1,5 +1,7 @@
 # CakePHP Elastic Plugin & ElasticSearch "ElasticSource" Datasource
 
+This is a modified version of the ElasticSearch Plugin hosted at http://github.com/dkullmann/CakePHP-Elastic-Search-DataSource.
+
 Conveniently index and access records in ElasticSearch.
 
 ## Background
