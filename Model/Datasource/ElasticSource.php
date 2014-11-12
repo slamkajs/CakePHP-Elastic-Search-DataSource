@@ -463,7 +463,7 @@ class ElasticSource extends DataSource {
 		foreach ($documents as $document) {
 			$_id = isset($document['_id']) ? $document['_id'] : null;
 			// ADD CHECK IF ID IS EMPTY TO GET THE DB RECORD ID IF IT EXISTS
-			if(!$_id) $_id = isset($document['id']) && !empty($document['id']) ? $document['id'] : null;
+			if(!$_id && isset($document[array_keys($document)[0]]) && gettype($document[array_keys($document)[0]]) === 'array') $_id = isset($document[array_keys($document)[0]]['id']) && !empty($document[array_keys($document)[0]]['id']) ? $document[array_keys($document)[0]]['id'] : null;
 			$_parent = isset($document['_parent']) ? $document['_parent'] : null;
 			unset($document['_id'], $document['_parent']);
 			$command = array('index' => array('_index' => $this->config['index'], '_type' => $type) + compact('_id', '_parent'));
@@ -1524,7 +1524,7 @@ class ElasticSource extends DataSource {
 			return $results['hits']['hits'];
 		}
 		if (!empty($results['_id'])) {
-			$model = $results['_source'];
+			$model = isset($results['_source']) ? $results['_source'] : [];
 			if (empty($model[$this->currentModel->alias][$this->currentModel->primaryKey])) {
 				$model[$this->currentModel->alias][$this->currentModel->primaryKey] = $results['_id'];
 			}
