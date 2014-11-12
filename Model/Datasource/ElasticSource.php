@@ -462,6 +462,8 @@ class ElasticSource extends DataSource {
 
 		foreach ($documents as $document) {
 			$_id = isset($document['_id']) ? $document['_id'] : null;
+			// ADD CHECK IF ID IS EMPTY TO GET THE DB RECORD ID IF IT EXISTS
+			if(!$_id) $_id = isset($document['id']) && !empty($document['id']) ? $document['id'] : null;
 			$_parent = isset($document['_parent']) ? $document['_parent'] : null;
 			unset($document['_id'], $document['_parent']);
 			$command = array('index' => array('_index' => $this->config['index'], '_type' => $type) + compact('_id', '_parent'));
